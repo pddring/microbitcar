@@ -1,0 +1,10 @@
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\bin\Debug\TestController.exe.config
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\bin\Debug\TestController.exe
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\bin\Debug\TestController.pdb
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.csprojAssemblyReference.cache
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.Form1.resources
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.Properties.Resources.resources
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.csproj.GenerateResource.cache
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.csproj.CoreCompileInputs.cache
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.exe
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.pdb
