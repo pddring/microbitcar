@@ -99,5 +99,11 @@ namespace TestController
         {
             lstOutput.Items.Clear();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            lstCOMPorts.Items.Clear();
+            lstCOMPorts.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+        }
     }
 }

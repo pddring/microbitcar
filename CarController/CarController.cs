@@ -39,8 +39,13 @@ namespace MicroBitCarController
             {
                 if (value)
                 {
+                    port.Parity = System.IO.Ports.Parity.None;
+                    port.DataBits = 8;
+                    port.StopBits = System.IO.Ports.StopBits.One;   
                     port.Open();
-                    port.WriteLine("\n\rfrom microbit import *\n\r");
+                    port.WriteLine("\n\r\x04\r");
+                    System.Threading.Thread.Sleep(1000);
+                    port.WriteLine("from microbit import *\r");
                     port.DataReceived += Port_DataReceived;
                 } else
                 {
@@ -61,9 +66,9 @@ namespace MicroBitCarController
         private void Port_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             lineReceived += port.ReadExisting();
-            if(lineReceived.Contains("\n"))
+            if(lineReceived.Contains("\r"))
             {
-                string []parts = lineReceived.Split('\n');
+                string []parts = lineReceived.Split('\r');
                 if (ReceivedData != null)
                 {
                     for(int i = 0; i < parts.Length - 1; i++)
