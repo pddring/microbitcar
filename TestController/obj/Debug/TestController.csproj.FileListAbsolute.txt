@@ -8,3 +8,6 @@ E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug
 E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.csproj.CoreCompileInputs.cache
 E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.exe
 E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.pdb
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\bin\Debug\CarController.dll
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\bin\Debug\CarController.pdb
+E:\pddring\Documents\Visual Studio Projects\microbitcar\TestController\obj\Debug\TestController.csproj.CopyComplete

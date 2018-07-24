@@ -49,8 +49,21 @@ namespace TestController
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            car.SetPort(lstCOMPorts.SelectedValue.ToString());
-            car.Connected = true;
+            if(lstCOMPorts.SelectedIndex > -1)
+            {
+                car.SetPort(lstCOMPorts.SelectedItem.ToString());
+                car.Connected = true;
+                car.ReceivedData += Car_ReceivedData;
+            }
+            
+        }
+
+        private void Car_ReceivedData(object sender, CarController.ReceiveLineEventArgs e)
+        {
+            lstOutput.BeginInvoke(new Action(() => {
+                lstOutput.Items.Add(e.DataReceived);
+            }));
+            
         }
 
         private void radioLeft_CheckedChanged(object sender, EventArgs e)
@@ -80,6 +93,11 @@ namespace TestController
         private void sliderSpeed_Scroll(object sender, EventArgs e)
         {
             car.SetSpeed(sliderSpeed.Value);
+        }
+
+        private void lstOutput_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lstOutput.Items.Clear();
         }
     }
 }

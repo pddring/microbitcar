@@ -22,6 +22,7 @@ namespace MicroBitCarController
         /// <param name="portName"></param>
         public void SetPort(string portName)
         {
+            Connected = false;
             port.PortName = portName;
         }
 
@@ -36,14 +37,48 @@ namespace MicroBitCarController
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     port.Open();
+                    port.WriteLine("\n\rfrom microbit import *\n\r");
+                    port.DataReceived += Port_DataReceived;
                 } else
                 {
                     port.Close();
                 }
             }
+        }
+
+        public event ReceivedDataHandler ReceivedData;
+
+        public class ReceiveLineEventArgs : EventArgs
+        {
+            public string DataReceived;
+        }
+
+        public delegate void ReceivedDataHandler(object sender, ReceiveLineEventArgs e);
+        protected string lineReceived = "";
+        private void Port_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            lineReceived += port.ReadExisting();
+            if(lineReceived.Contains("\n"))
+            {
+                string []parts = lineReceived.Split('\n');
+                if (ReceivedData != null)
+                {
+                    for(int i = 0; i < parts.Length - 1; i++)
+                    {
+                        ReceiveLineEventArgs args = new ReceiveLineEventArgs();
+                        args.DataReceived = parts[i];
+                        ReceivedData(this, args);
+                    }
+                    lineReceived = parts[parts.Length-1];   
+                }
+
+
+            }
+            
+            
         }
 
         /// <summary>
@@ -52,7 +87,14 @@ namespace MicroBitCarController
         /// <param name="lights"></param>
         public void SetHeadLights(bool lights)
         {
-
+            if (lights)
+            {
+                port.WriteLine("display.show(Image.HAPPY)\n\r");
+            }
+            else
+            {
+                port.WriteLine("display.show(Image.SAD)\n\r");
+            }
         }
 
         /// <summary>

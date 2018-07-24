@@ -42,6 +42,7 @@
             this.radioLeft = new System.Windows.Forms.RadioButton();
             this.btnStop = new System.Windows.Forms.Button();
             this.chkDoors = new System.Windows.Forms.CheckBox();
+            this.lstOutput = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderSpeed)).BeginInit();
@@ -206,11 +207,21 @@
             this.chkDoors.UseVisualStyleBackColor = true;
             this.chkDoors.CheckedChanged += new System.EventHandler(this.chkDoors_CheckedChanged);
             // 
+            // lstOutput
+            // 
+            this.lstOutput.FormattingEnabled = true;
+            this.lstOutput.Location = new System.Drawing.Point(12, 131);
+            this.lstOutput.Name = "lstOutput";
+            this.lstOutput.Size = new System.Drawing.Size(643, 238);
+            this.lstOutput.TabIndex = 7;
+            this.lstOutput.SelectedIndexChanged += new System.EventHandler(this.lstOutput_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 133);
+            this.ClientSize = new System.Drawing.Size(660, 370);
+            this.Controls.Add(this.lstOutput);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -242,6 +253,7 @@
         private System.Windows.Forms.RadioButton radioRight;
         private System.Windows.Forms.RadioButton radioForwads;
         private System.Windows.Forms.CheckBox chkDoors;
+        private System.Windows.Forms.ListBox lstOutput;
     }
 }
 
