@@ -110,6 +110,7 @@
             this.btnConnect.TabIndex = 5;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // btnRefresh
             // 
@@ -132,6 +133,7 @@
             this.sliderSpeed.SmallChange = 5;
             this.sliderSpeed.TabIndex = 5;
             this.sliderSpeed.TickFrequency = 100;
+            this.sliderSpeed.Scroll += new System.EventHandler(this.sliderSpeed_Scroll);
             // 
             // groupBox3
             // 
@@ -157,6 +159,7 @@
             this.radioRight.TabStop = true;
             this.radioRight.Text = "Right";
             this.radioRight.UseVisualStyleBackColor = true;
+            this.radioRight.CheckedChanged += new System.EventHandler(this.radioRight_CheckedChanged);
             // 
             // radioForwads
             // 
@@ -168,6 +171,7 @@
             this.radioForwads.TabStop = true;
             this.radioForwads.Text = "Forwards";
             this.radioForwads.UseVisualStyleBackColor = true;
+            this.radioForwads.CheckedChanged += new System.EventHandler(this.radioForwads_CheckedChanged);
             // 
             // radioLeft
             // 
@@ -179,6 +183,7 @@
             this.radioLeft.TabStop = true;
             this.radioLeft.Text = "Left";
             this.radioLeft.UseVisualStyleBackColor = true;
+            this.radioLeft.CheckedChanged += new System.EventHandler(this.radioLeft_CheckedChanged);
             // 
             // btnStop
             // 
@@ -199,6 +204,7 @@
             this.chkDoors.TabIndex = 2;
             this.chkDoors.Text = "Doors";
             this.chkDoors.UseVisualStyleBackColor = true;
+            this.chkDoors.CheckedChanged += new System.EventHandler(this.chkDoors_CheckedChanged);
             // 
             // Form1
             // 
