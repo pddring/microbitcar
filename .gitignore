@@ -2,9 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/CarController/.vs/CarController/v15/Server/sqlite3
-/CarController/.vs/CarController/DesignTimeBuild/.dtbcache
-/CarController/.vs/CarController/v15/.suo
+/CarController/.vs
 /CarController/bin
 /CarController/obj
 /TestController/bin
