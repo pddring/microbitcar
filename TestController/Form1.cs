@@ -32,5 +32,10 @@ namespace TestController
             lstCOMPorts.Items.Clear();
             lstCOMPorts.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
         }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            sliderSpeed.Value = 0;
+        }
     }
 }

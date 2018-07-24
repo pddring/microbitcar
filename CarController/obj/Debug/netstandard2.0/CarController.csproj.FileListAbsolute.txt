@@ -1,0 +1,9 @@
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\bin\Debug\netstandard2.0\CarController.deps.json
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\bin\Debug\netstandard2.0\CarController.dll
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\bin\Debug\netstandard2.0\CarController.pdb
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\obj\Debug\netstandard2.0\CarController.csprojAssemblyReference.cache
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\obj\Debug\netstandard2.0\CarController.csproj.CoreCompileInputs.cache
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\obj\Debug\netstandard2.0\CarController.AssemblyInfoInputs.cache
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\obj\Debug\netstandard2.0\CarController.AssemblyInfo.cs
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\obj\Debug\netstandard2.0\CarController.dll
+E:\pddring\Documents\Visual Studio Projects\microbitcar\CarController\obj\Debug\netstandard2.0\CarController.pdb

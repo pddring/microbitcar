@@ -33,10 +33,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lstCOMPorts = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.sliderSpeed = new System.Windows.Forms.TrackBar();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioRight = new System.Windows.Forms.RadioButton();
+            this.radioForwads = new System.Windows.Forms.RadioButton();
+            this.radioLeft = new System.Windows.Forms.RadioButton();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.chkDoors = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sliderSpeed)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // chkHeadlights
@@ -53,7 +62,7 @@
             // chkRearLights
             // 
             this.chkRearLights.AutoSize = true;
-            this.chkRearLights.Location = new System.Drawing.Point(6, 54);
+            this.chkRearLights.Location = new System.Drawing.Point(6, 52);
             this.chkRearLights.Name = "chkRearLights";
             this.chkRearLights.Size = new System.Drawing.Size(76, 17);
             this.chkRearLights.TabIndex = 1;
@@ -63,11 +72,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkDoors);
             this.groupBox1.Controls.Add(this.chkHeadlights);
             this.groupBox1.Controls.Add(this.chkRearLights);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(126, 100);
+            this.groupBox1.Size = new System.Drawing.Size(126, 113);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lights";
@@ -87,10 +97,19 @@
             this.groupBox2.Controls.Add(this.lstCOMPorts);
             this.groupBox2.Location = new System.Drawing.Point(144, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
+            this.groupBox2.Size = new System.Drawing.Size(200, 113);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Connection";
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(87, 71);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.TabIndex = 5;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
             // 
             // btnRefresh
             // 
@@ -102,20 +121,91 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // btnConnect
+            // sliderSpeed
             // 
-            this.btnConnect.Location = new System.Drawing.Point(87, 71);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(75, 23);
-            this.btnConnect.TabIndex = 5;
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.UseVisualStyleBackColor = true;
+            this.sliderSpeed.LargeChange = 20;
+            this.sliderSpeed.Location = new System.Drawing.Point(6, 26);
+            this.sliderSpeed.Maximum = 1023;
+            this.sliderSpeed.Minimum = -1023;
+            this.sliderSpeed.Name = "sliderSpeed";
+            this.sliderSpeed.Size = new System.Drawing.Size(188, 45);
+            this.sliderSpeed.SmallChange = 5;
+            this.sliderSpeed.TabIndex = 5;
+            this.sliderSpeed.TickFrequency = 100;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnStop);
+            this.groupBox3.Controls.Add(this.radioLeft);
+            this.groupBox3.Controls.Add(this.radioRight);
+            this.groupBox3.Controls.Add(this.radioForwads);
+            this.groupBox3.Controls.Add(this.sliderSpeed);
+            this.groupBox3.Location = new System.Drawing.Point(350, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(305, 113);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Speed and Direction";
+            // 
+            // radioRight
+            // 
+            this.radioRight.AutoSize = true;
+            this.radioRight.Location = new System.Drawing.Point(240, 54);
+            this.radioRight.Name = "radioRight";
+            this.radioRight.Size = new System.Drawing.Size(50, 17);
+            this.radioRight.TabIndex = 7;
+            this.radioRight.TabStop = true;
+            this.radioRight.Text = "Right";
+            this.radioRight.UseVisualStyleBackColor = true;
+            // 
+            // radioForwads
+            // 
+            this.radioForwads.AutoSize = true;
+            this.radioForwads.Location = new System.Drawing.Point(126, 54);
+            this.radioForwads.Name = "radioForwads";
+            this.radioForwads.Size = new System.Drawing.Size(68, 17);
+            this.radioForwads.TabIndex = 6;
+            this.radioForwads.TabStop = true;
+            this.radioForwads.Text = "Forwards";
+            this.radioForwads.UseVisualStyleBackColor = true;
+            // 
+            // radioLeft
+            // 
+            this.radioLeft.AutoSize = true;
+            this.radioLeft.Location = new System.Drawing.Point(6, 53);
+            this.radioLeft.Name = "radioLeft";
+            this.radioLeft.Size = new System.Drawing.Size(43, 17);
+            this.radioLeft.TabIndex = 8;
+            this.radioLeft.TabStop = true;
+            this.radioLeft.Text = "Left";
+            this.radioLeft.UseVisualStyleBackColor = true;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(215, 26);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 9;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // chkDoors
+            // 
+            this.chkDoors.AutoSize = true;
+            this.chkDoors.Location = new System.Drawing.Point(6, 83);
+            this.chkDoors.Name = "chkDoors";
+            this.chkDoors.Size = new System.Drawing.Size(54, 17);
+            this.chkDoors.TabIndex = 2;
+            this.chkDoors.Text = "Doors";
+            this.chkDoors.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(660, 133);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -123,6 +213,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sliderSpeed)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -136,6 +229,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.TrackBar sliderSpeed;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.RadioButton radioLeft;
+        private System.Windows.Forms.RadioButton radioRight;
+        private System.Windows.Forms.RadioButton radioForwads;
+        private System.Windows.Forms.CheckBox chkDoors;
     }
 }
 
