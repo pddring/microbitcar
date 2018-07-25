@@ -1,37 +1,75 @@
-# This file goes on a micro:bit inside the car. It listens for radio commands
 from microbit import *
+import radio
+radio.on()
 display.off()
 
-def set_speed(speed):
-  if abs(speed) < 10:
+def stop():
     pin0.write_analog(0)
-  else:
-    pin0.write_analog(abs(speed))
-    if speed > 0:
-      pin8.write_digital(0)
-    else:
-      pin8.write_digital(1)
-
-def steer(direction):
-  if direction=="L":
-    pin12.write_digital(1)
-    pin16.write_digital(0)
-  elif direction == "R":
-    pin12.write_digital(0)
-    pin16.write_digital(1)
-  else:
+    pin8.write_digital(0)
     pin12.write_digital(0)
     pin16.write_digital(0)
+    pin6.write_digital(0)
+    pin7.write_digital(0)
+    pin3.write_digital(0)
+    pin9.write_digital(0)
 
+stop()
 while True:
-  if button_a.is_pressed():
-    steer("L")
-  elif button_b.is_pressed():
-    steer("R")
-  else:
-    steer("F")
-    
-  speed = -accelerometer.get_y()
-  set_speed(speed)
-  
-  sleep(10)
+    msg = radio.receive()
+    if msg == None:
+        sleep(50)
+    else:
+        
+        cmd = str(msg)[0]
+        param = str(msg)[1:]
+      
+        try:
+            # headlights
+            if cmd == "H":
+                value = int(param)
+                pin6.write_digital(value)
+            
+            # horn
+            if cmd == "*":
+                value = int(param)
+                pin3.write_digital(value)
+
+            # rear lights
+            if cmd == "B":
+                value = int(param)
+                pin7.write_digital(value)
+
+            # doors
+            if cmd == "D":
+                value = int(param)
+                pin9.write_digital(value)
+
+            # set speed
+            if cmd == "V":
+                value = int(param)
+                if value >= 0:
+                    pin8.write_digital(0)
+                else:
+                    pin8.write_digital(1)
+                pin0.write_analog(abs(value))
+
+            # steer
+            if cmd == "S":
+                if param == "L":
+                    pin12.write_digital(1)
+                    pin16.write_digital(0)
+                elif param == "R":
+                    pin12.write_digital(1)
+                    pin16.write_digital(1)
+                else:
+                    pin12.write_digital(0)
+                    pin16.write_digital(0)
+                
+        except:
+            stop()
+            display.on()
+            display.show(cmd)
+            sleep(1000)
+            display.show(param)
+            sleep(1000)
+            display.off()

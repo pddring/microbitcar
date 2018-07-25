@@ -46,6 +46,8 @@ namespace MicroBitCarController
                     port.WriteLine("\n\r\x04\r");
                     System.Threading.Thread.Sleep(1000);
                     port.WriteLine("from microbit import *\r");
+                    port.WriteLine("import radio\r");
+                    port.WriteLine("radio.on()\r");
                     port.DataReceived += Port_DataReceived;
                 } else
                 {
@@ -92,14 +94,16 @@ namespace MicroBitCarController
         /// <param name="lights"></param>
         public void SetHeadLights(bool lights)
         {
-            if (lights)
-            {
-                port.WriteLine("display.show(Image.HAPPY)\n\r");
-            }
-            else
-            {
-                port.WriteLine("display.show(Image.SAD)\n\r");
-            }
+            send("H" + (lights ? "1" : "0"));
+        }
+
+        /// <summary>
+        /// Send radio control via the micro:bit
+        /// </summary>
+        /// <param name="radiostring"></param>
+        protected void send(string radiostring)
+        {
+            port.WriteLine("radio.send(\"" + radiostring + "\")\n\r");
         }
 
         /// <summary>
@@ -108,7 +112,16 @@ namespace MicroBitCarController
         /// <param name="lights"></param>
         public void SetBrakeLights(bool lights)
         {
+            send("B" + (lights?"1":"0"));
+        }
 
+        /// <summary>
+        /// Switches the horn on or off
+        /// </summary>
+        /// <param name="horn"></param>
+        public void SetHorn(bool horn)
+        {
+            send("*" + (horn? "1" : "0"));
         }
 
         /// <summary>
@@ -117,7 +130,7 @@ namespace MicroBitCarController
         /// <param name="doors"></param>
         public void OpenDoors(bool doors)
         {
-
+            send("D" + (doors?"1":"0"));
         }
 
         /// <summary>
@@ -126,7 +139,7 @@ namespace MicroBitCarController
         /// <param name="speed">Speed of the car (-1023 to 1023)</param>
         public void SetSpeed(int speed)
         {
-
+            send("V" + speed);
         }
 
         /// <summary>
@@ -152,7 +165,20 @@ namespace MicroBitCarController
         /// <param name="direction">Direction.Forwards, Direction.Left or Direction.Right</param>
         public void Steer(Direction direction)
         {
-
+            string d = "F";
+            switch(direction)
+            {
+                case Direction.Forwards:
+                    d = "F";
+                    break;
+                case Direction.Left:
+                    d = "L";
+                    break;
+                case Direction.Right:
+                    d = "R";
+                    break;
+            }
+            send("S" + d);
         }
     }
 }

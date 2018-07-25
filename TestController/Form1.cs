@@ -105,5 +105,10 @@ namespace TestController
             lstCOMPorts.Items.Clear();
             lstCOMPorts.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
         }
+
+        private void chkHorn_CheckedChanged(object sender, EventArgs e)
+        {
+            car.SetHorn(chkHorn.Checked);
+        }
     }
 }

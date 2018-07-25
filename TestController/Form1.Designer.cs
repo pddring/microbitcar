@@ -31,18 +31,19 @@
             this.chkHeadlights = new System.Windows.Forms.CheckBox();
             this.chkRearLights = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkDoors = new System.Windows.Forms.CheckBox();
             this.lstCOMPorts = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.sliderSpeed = new System.Windows.Forms.TrackBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.radioLeft = new System.Windows.Forms.RadioButton();
             this.radioRight = new System.Windows.Forms.RadioButton();
             this.radioForwads = new System.Windows.Forms.RadioButton();
-            this.radioLeft = new System.Windows.Forms.RadioButton();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.chkDoors = new System.Windows.Forms.CheckBox();
             this.lstOutput = new System.Windows.Forms.ListBox();
+            this.chkHorn = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderSpeed)).BeginInit();
@@ -82,6 +83,17 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lights";
+            // 
+            // chkDoors
+            // 
+            this.chkDoors.AutoSize = true;
+            this.chkDoors.Location = new System.Drawing.Point(6, 83);
+            this.chkDoors.Name = "chkDoors";
+            this.chkDoors.Size = new System.Drawing.Size(54, 17);
+            this.chkDoors.TabIndex = 2;
+            this.chkDoors.Text = "Doors";
+            this.chkDoors.UseVisualStyleBackColor = true;
+            this.chkDoors.CheckedChanged += new System.EventHandler(this.chkDoors_CheckedChanged);
             // 
             // lstCOMPorts
             // 
@@ -138,6 +150,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.chkHorn);
             this.groupBox3.Controls.Add(this.btnStop);
             this.groupBox3.Controls.Add(this.radioLeft);
             this.groupBox3.Controls.Add(this.radioRight);
@@ -149,6 +162,28 @@
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Speed and Direction";
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(215, 26);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 9;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // radioLeft
+            // 
+            this.radioLeft.AutoSize = true;
+            this.radioLeft.Location = new System.Drawing.Point(6, 53);
+            this.radioLeft.Name = "radioLeft";
+            this.radioLeft.Size = new System.Drawing.Size(43, 17);
+            this.radioLeft.TabIndex = 8;
+            this.radioLeft.TabStop = true;
+            this.radioLeft.Text = "Left";
+            this.radioLeft.UseVisualStyleBackColor = true;
+            this.radioLeft.CheckedChanged += new System.EventHandler(this.radioLeft_CheckedChanged);
             // 
             // radioRight
             // 
@@ -174,39 +209,6 @@
             this.radioForwads.UseVisualStyleBackColor = true;
             this.radioForwads.CheckedChanged += new System.EventHandler(this.radioForwads_CheckedChanged);
             // 
-            // radioLeft
-            // 
-            this.radioLeft.AutoSize = true;
-            this.radioLeft.Location = new System.Drawing.Point(6, 53);
-            this.radioLeft.Name = "radioLeft";
-            this.radioLeft.Size = new System.Drawing.Size(43, 17);
-            this.radioLeft.TabIndex = 8;
-            this.radioLeft.TabStop = true;
-            this.radioLeft.Text = "Left";
-            this.radioLeft.UseVisualStyleBackColor = true;
-            this.radioLeft.CheckedChanged += new System.EventHandler(this.radioLeft_CheckedChanged);
-            // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(215, 26);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 9;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // chkDoors
-            // 
-            this.chkDoors.AutoSize = true;
-            this.chkDoors.Location = new System.Drawing.Point(6, 83);
-            this.chkDoors.Name = "chkDoors";
-            this.chkDoors.Size = new System.Drawing.Size(54, 17);
-            this.chkDoors.TabIndex = 2;
-            this.chkDoors.Text = "Doors";
-            this.chkDoors.UseVisualStyleBackColor = true;
-            this.chkDoors.CheckedChanged += new System.EventHandler(this.chkDoors_CheckedChanged);
-            // 
             // lstOutput
             // 
             this.lstOutput.FormattingEnabled = true;
@@ -215,6 +217,17 @@
             this.lstOutput.Size = new System.Drawing.Size(643, 238);
             this.lstOutput.TabIndex = 7;
             this.lstOutput.SelectedIndexChanged += new System.EventHandler(this.lstOutput_SelectedIndexChanged);
+            // 
+            // chkHorn
+            // 
+            this.chkHorn.AutoSize = true;
+            this.chkHorn.Location = new System.Drawing.Point(126, 83);
+            this.chkHorn.Name = "chkHorn";
+            this.chkHorn.Size = new System.Drawing.Size(49, 17);
+            this.chkHorn.TabIndex = 10;
+            this.chkHorn.Text = "Horn";
+            this.chkHorn.UseVisualStyleBackColor = true;
+            this.chkHorn.CheckedChanged += new System.EventHandler(this.chkHorn_CheckedChanged);
             // 
             // Form1
             // 
@@ -255,6 +268,7 @@
         private System.Windows.Forms.RadioButton radioForwads;
         private System.Windows.Forms.CheckBox chkDoors;
         private System.Windows.Forms.ListBox lstOutput;
+        private System.Windows.Forms.CheckBox chkHorn;
     }
 }
 
