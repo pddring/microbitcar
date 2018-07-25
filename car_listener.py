@@ -63,7 +63,7 @@ while True:
                     pin16.write_digital(1)
                 else:
                     pin12.write_digital(0)
-                    pin16.write_digital(0)
+                    pin16   .write_digital(0)
                 
         except:
             stop()
