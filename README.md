@@ -16,21 +16,22 @@ Get it from http://microbit-micropython.readthedocs.io/en/latest/devguide/repl.h
 
 ## How it works:
 The pair of micro:bits communicate using radio signals. The micro:bit in the car listens for the following commands:
+
 | Command | Description |
-| ------- | ------------|
-|H1       | turn headlights on|
-|H0| turn headlights off|
-|B1| turn brake lights on|
-|B0| turn brake lights off|
-|*1| turn horn on|
-|*0| turn horn off|
-|D1| switch door mech on|
-|D0| switch door mech off|
-|SF| steer forwards|
-|SL| steer left|
-|SR| steer right|
-|V0| stop|
-|V-1023| go backwards as fast as possible|
-|V1023| go forwards as fast as possible|
+| --- | --- |
+| H1 | turn headlights on |
+| H0 | turn headlights off |
+| B1 | turn brake lights on |
+| B0 | turn brake lights off |
+| &ast;1 | turn horn on |
+| &ast;0 | turn horn off |
+| D1 | switch door mech on |
+| D0 | switch door mech off |
+| SF | steer forwards |
+| SL | steer left |
+| SR | steer right |
+| V0 | stop |
+| V-1023 | go backwards as fast as possible |
+| V1023 | go forwards as fast as possible |
 
 You can vary the number after V to change the speed.
