@@ -23,8 +23,8 @@ The pair of micro:bits communicate using radio signals. The micro:bit in the car
 | H0 | turn headlights off |
 | B1 | turn brake lights on |
 | B0 | turn brake lights off |
-| &ast;1 | turn horn on |
-| &ast;0 | turn horn off |
+| &ast;500 | beep horn (low pitch) |
+| &ast;1500 | beep horn (high pitch) |
 | D1 | switch door mech on |
 | D0 | switch door mech off |
 | SF | steer forwards |
@@ -33,5 +33,6 @@ The pair of micro:bits communicate using radio signals. The micro:bit in the car
 | V0 | stop |
 | V-1023 | go backwards as fast as possible |
 | V1023 | go forwards as fast as possible |
+| Gd | Get distance (in mm) |
 
 You can vary the number after V to change the speed.
