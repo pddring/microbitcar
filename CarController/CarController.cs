@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace MicroBitCarController
 {
@@ -77,7 +78,13 @@ namespace MicroBitCarController
                     {
                         ReceiveLineEventArgs args = new ReceiveLineEventArgs();
                         args.DataReceived = parts[i];
+                        Match m = Regex.Match(args.DataReceived, "'(-?\\d+)'");
+                        if(m.Success)
+                        {
+                            currentDistance= int.Parse(m.Groups[1].Value);
+                        }
                         ReceivedData(this, args);
+
                     }
                     lineReceived = parts[parts.Length-1];   
                 }
@@ -115,13 +122,39 @@ namespace MicroBitCarController
             send("B" + (lights?"1":"0"));
         }
 
+        protected int currentDistance;
+
+        public int GetDistance()
+        {
+            if(Connected)
+            {
+                send("Gd");
+                port.BaseStream.Flush();
+                port.WriteLine("radio.receive()\n\r");
+                port.WriteLine("radio.receive()\n\r");
+                port.BaseStream.Flush();
+                return currentDistance;
+            }
+            return 0;
+            
+        }
+
         /// <summary>
         /// Switches the horn on or off
         /// </summary>
         /// <param name="horn"></param>
-        public void SetHorn(bool horn)
+        public void SetHorn(int frequency)
         {
-            send("*" + (horn? "1" : "0"));
+            send("*" + frequency);
+        }
+
+        /// <summary>
+        /// Send custom command. Should not be used in production - just for test purposes.
+        /// </summary>
+        /// <param name="command">Command to send</param>
+        public void Send(string command)
+        {
+            send(command);
         }
 
         /// <summary>

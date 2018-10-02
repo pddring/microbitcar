@@ -38,8 +38,7 @@ namespace TestController
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            sliderSpeed.Value = 0;
-            car.Stop();
+            car.SetSpeed(int.Parse(txtSpeed.Text));
         }
 
         private void chkDoors_CheckedChanged(object sender, EventArgs e)
@@ -62,6 +61,7 @@ namespace TestController
         {
             lstOutput.BeginInvoke(new Action(() => {
                 lstOutput.Items.Add(e.DataReceived);
+                lstOutput.SelectedIndex = lstOutput.Items.Count - 1;
             }));
             
         }
@@ -90,25 +90,43 @@ namespace TestController
             }
         }
 
-        private void sliderSpeed_Scroll(object sender, EventArgs e)
-        {
-            car.SetSpeed(sliderSpeed.Value);
-        }
-
-        private void lstOutput_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lstOutput.Items.Clear();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             lstCOMPorts.Items.Clear();
             lstCOMPorts.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
         }
 
-        private void chkHorn_CheckedChanged(object sender, EventArgs e)
+        private void btnHorn_Click(object sender, EventArgs e)
         {
-            car.SetHorn(chkHorn.Checked);
+            car.SetHorn(int.Parse(txtHorn.Text));
+        }
+
+        private void btnCustomSend_Click(object sender, EventArgs e)
+        {
+
+            car.Send(txtCustom.Text);
+            txtCustom.Text = "";
+            txtCustom.Select();
+        }
+
+        private void lblDistance_Click(object sender, EventArgs e)
+        {
+            lblDistance.Text = car.GetDistance().ToString() + "mm";
+        }
+
+        private void distanceTimer_Tick(object sender, EventArgs e)
+        {
+            lblDistance.Text = car.GetDistance().ToString() + "mm";
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            car.Connected = false;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            lstOutput.Items.Clear();
         }
     }
 }
