@@ -39,8 +39,8 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtSpeed = new System.Windows.Forms.TextBox();
-            this.btnSpeed = new System.Windows.Forms.Button();
+            this.tbSpeed = new System.Windows.Forms.TrackBar();
+            this.btnStop = new System.Windows.Forms.Button();
             this.radioLeft = new System.Windows.Forms.RadioButton();
             this.radioRight = new System.Windows.Forms.RadioButton();
             this.radioForwads = new System.Windows.Forms.RadioButton();
@@ -56,9 +56,11 @@
             this.lblDistance = new System.Windows.Forms.Label();
             this.distanceTimer = new System.Windows.Forms.Timer(this.components);
             this.btnClear = new System.Windows.Forms.Button();
+            this.pbDistance = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -162,8 +164,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.txtSpeed);
-            this.groupBox3.Controls.Add(this.btnSpeed);
+            this.groupBox3.Controls.Add(this.tbSpeed);
+            this.groupBox3.Controls.Add(this.btnStop);
             this.groupBox3.Controls.Add(this.radioLeft);
             this.groupBox3.Controls.Add(this.radioRight);
             this.groupBox3.Controls.Add(this.radioForwads);
@@ -174,24 +176,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Speed and Direction";
             // 
-            // txtSpeed
+            // tbSpeed
             // 
-            this.txtSpeed.Location = new System.Drawing.Point(9, 26);
-            this.txtSpeed.Name = "txtSpeed";
-            this.txtSpeed.Size = new System.Drawing.Size(185, 20);
-            this.txtSpeed.TabIndex = 10;
-            this.txtSpeed.Text = "0";
-            this.txtSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSpeed.Location = new System.Drawing.Point(3, 16);
+            this.tbSpeed.Minimum = -10;
+            this.tbSpeed.Name = "tbSpeed";
+            this.tbSpeed.Size = new System.Drawing.Size(206, 45);
+            this.tbSpeed.TabIndex = 10;
+            this.tbSpeed.ValueChanged += new System.EventHandler(this.tbSpeed_ValueChanged);
             // 
-            // btnSpeed
+            // btnStop
             // 
-            this.btnSpeed.Location = new System.Drawing.Point(215, 26);
-            this.btnSpeed.Name = "btnSpeed";
-            this.btnSpeed.Size = new System.Drawing.Size(75, 23);
-            this.btnSpeed.TabIndex = 9;
-            this.btnSpeed.Text = "Set";
-            this.btnSpeed.UseVisualStyleBackColor = true;
-            this.btnSpeed.Click += new System.EventHandler(this.btnStop_Click);
+            this.btnStop.Location = new System.Drawing.Point(215, 26);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 9;
+            this.btnStop.Text = "&Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // radioLeft
             // 
@@ -322,7 +324,6 @@
             this.lblDistance.Size = new System.Drawing.Size(96, 13);
             this.lblDistance.TabIndex = 0;
             this.lblDistance.Text = "Click for an update";
-            this.lblDistance.Click += new System.EventHandler(this.lblDistance_Click);
             // 
             // distanceTimer
             // 
@@ -340,11 +341,20 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // pbDistance
+            // 
+            this.pbDistance.Location = new System.Drawing.Point(93, 349);
+            this.pbDistance.Maximum = 2000;
+            this.pbDistance.Name = "pbDistance";
+            this.pbDistance.Size = new System.Drawing.Size(562, 23);
+            this.pbDistance.TabIndex = 17;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 370);
+            this.ClientSize = new System.Drawing.Size(665, 370);
+            this.Controls.Add(this.pbDistance);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -353,14 +363,18 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Micro:bit car controller";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -381,7 +395,7 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnSpeed;
+        private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.RadioButton radioLeft;
         private System.Windows.Forms.RadioButton radioRight;
         private System.Windows.Forms.RadioButton radioForwads;
@@ -397,9 +411,10 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lblDistance;
         private System.Windows.Forms.Timer distanceTimer;
-        private System.Windows.Forms.TextBox txtSpeed;
         private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TrackBar tbSpeed;
+        private System.Windows.Forms.ProgressBar pbDistance;
     }
 }
 

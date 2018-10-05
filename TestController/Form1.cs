@@ -38,7 +38,7 @@ namespace TestController
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            car.SetSpeed(int.Parse(txtSpeed.Text));
+            tbSpeed.Value = 0;
         }
 
         private void chkDoors_CheckedChanged(object sender, EventArgs e)
@@ -109,14 +109,24 @@ namespace TestController
             txtCustom.Select();
         }
 
-        private void lblDistance_Click(object sender, EventArgs e)
-        {
-            lblDistance.Text = car.GetDistance().ToString() + "mm";
-        }
-
         private void distanceTimer_Tick(object sender, EventArgs e)
         {
-            lblDistance.Text = car.GetDistance().ToString() + "mm";
+            int distance = car.GetDistance();
+            lblDistance.Text = distance.ToString() + "mm";
+            if (distance > pbDistance.Maximum)
+            {
+                pbDistance.Value = pbDistance.Maximum;
+            } else
+            {
+                if(distance < pbDistance.Minimum)
+                {
+                    pbDistance.Value = pbDistance.Minimum;
+                } else
+                {
+                    pbDistance.Value = distance;
+                }
+            }
+                
         }
 
         private void btnDisconnect_Click(object sender, EventArgs e)
@@ -127,6 +137,36 @@ namespace TestController
         private void btnClear_Click(object sender, EventArgs e)
         {
             lstOutput.Items.Clear();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.Up:
+                    tbSpeed.Value = 10;
+                    break;
+                case Keys.Down:
+                    tbSpeed.Value = -10;
+                    break;
+                case Keys.Left:
+                    radioLeft.Checked = true;
+                    break;
+                case Keys.Right:
+                    radioRight.Checked = true;
+                    break;
+            }
+        }
+
+        private void tbSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            car.SetSpeed(tbSpeed.Value * 10);
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            tbSpeed.Value = 0;
+            radioForwads.Checked = true;
         }
     }
 }
